@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Weather in {{ weather.city }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body>
+  <div class="card">
+    <h2>🌍 {{ weather.city }}, {{ weather.country }}</h2>
+    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" class="weather-icon">
+    <p><strong>Temp:</strong> {{ weather.temp }}</p>
+    <p><strong>Feels like:</strong> {{ weather.feels }}</p>
+    <p><strong>Humidity:</strong> {{ weather.hum }}</p>
+    <p><strong>Pressure:</strong> {{ weather.press }}</p>
+    <p><strong>Wind:</strong> {{ weather.wind }}</p>
+    <p><strong>Desc:</strong> {{ weather.desc }}</p>
+    <p><strong>Sunrise:</strong> {{ weather.sunrise }}</p>
+    <p><strong>Sunset:</strong> {{ weather.sunset }}</p>
+    <a href="/" class="back-link">🔙 Check Another City</a>
+  </div>
+
+  <h3>Hourly Forecast</h3>
+  <div class="hourly">
+    {% for h in hourly %}
+      <div class="hour-card">
+        <p>{{ h.dt_txt.split()[1][:5] }}</p>
+        <img src="http://openweathermap.org/img/wn/{{ h.weather[0].icon }}.png">
+        <p>{{ h.main.temp }}°</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h3>5-Day Forecast</h3>
+  <div class="daily-grid">
+    {% for d in daily_data %}
+      <div class="day-card">
+        <p>{{ d.date }}</p>
+        <img src="http://openweathermap.org/img/wn/{{ d.icon }}.png">
+        <p>{{ d.max }}° / {{ d.min }}°</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h3>Temp Trend</h3>
+  <canvas id="tempChart"></canvas>
+
+  <!-- Inject JSON data into DOM -->
+  <div
+    id="chart-data"
+    data-labels='{{ labels | tojson | safe }}'
+    data-temps='{{ temps | tojson | safe }}'
+  ></div>
+
+  <!-- External JS to handle the chart rendering -->
+  <script src="/static/js/chart-init.js" defer></script>
+</body>
+</html>

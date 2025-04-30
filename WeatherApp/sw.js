@@ -1,0 +1,3 @@
+const cacheName='weather-v1',assets=['/','/static/css/style.css','/static/images/weather.jpg'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(cacheName).then(c=>c.addAll(assets))));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

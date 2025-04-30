@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Weather Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <label class="switch">
+    <input type="checkbox" id="theme-toggle"><span class="slider"></span>
+  </label>
+  <div class="container">
+    <h1>🌤️ Weather Checker</h1>
+    <form method="POST">
+      <input id="city-input" name="city" placeholder="Enter city" required>
+      <button type="submit">Get Weather</button>
+    </form>
+    <button id="loc-btn" type="button">📍 Use My Location</button>
+    <button id="unit-btn">°C/°F</button>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  </div>
+  <div id="spinner" class="hidden"><div class="loader"></div></div>
+
+  <script src="/static/js/autocomplete.js" defer></script>
+  <script src="/static/js/geolocate.js" defer></script>
+  <script src="/static/js/theme.js" defer></script>
+  <script src="/static/js/spinner.js" defer></script>
+  <!-- <script src="/static/js/history.js" defer></script> -->
+  <script src="/static/js/chart.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+:root{--bg:#eef;--txt:#000;--card:#fff}
+[data-theme="dark"]{--bg:#121212;--txt:#eee;--card:rgba(0,0,0,0.7)}
+body{margin:0;padding:0;font-family:'Roboto',sans-serif;background:var(--bg);color:var(--txt);display:flex;flex-direction:column;align-items:center;}
+.switch{position:fixed;top:10px;right:10px;}
+.container, .card{background:var(--card);padding:1.5rem;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.3);margin:1rem;width:90%;max-width:500px;text-align:center;}
+input, button{padding:0.7rem;margin:0.5rem;font-size:1rem;border-radius:6px;border:none;}
+button{background:#0077ff;color:#fff;cursor:pointer;}button:hover{background:#005fcc;}
+.error{color:red;margin-top:0.5rem;}
+#spinner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);} .hidden{display:none;}
+.loader{border:6px solid #f3f3f3;border-top:6px solid #3498db;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;}
+@keyframes spin{100%{transform:rotate(360deg)}}
+.weather-icon{width:80px;height:80px;margin:0.5rem;}
+.hourly, .daily-grid{display:flex;overflow-x:auto;gap:1rem;padding:1rem;}
+.hour-card, .day-card{background:var(--card);padding:1rem;border-radius:8px;min-width:80px;text-align:center;}
+.back-link{display:inline-block;margin-top:1rem;color:#0077ff;text-decoration:none;font-weight:bold;}
+.back-link:hover{text-decoration:underline;}
